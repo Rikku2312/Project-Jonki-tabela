@@ -35,12 +35,15 @@
 
         .tables-wrapper {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: 30px;
+            align-items: flex-start;
         }
 
         .table-section {
-            width: 100%;
+            flex: 1 1 300px;
+            min-width: 280px;
         }
 
         .table-section h2 {
@@ -110,6 +113,18 @@
             font-style: italic;
         }
     </style>
+        <style>
+        @media (max-width: 900px) {
+            .tables-wrapper {
+                flex-direction: column;
+            }
+            .table-section {
+                width: 100%;
+                min-width: auto;
+                flex: none;
+            }
+        }
+        </style>
 </head>
 <body>
     <div class="container">
@@ -120,17 +135,11 @@
             <div class="table-section section-do">
                 <h2>Do zrobienia</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th class="lp-col">Lp.</th>
-                            <th class="task-col">Zadanie</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
                             <td class="lp-col">1</td>
-                            <td>cos1</td>
-                        </tr>
+                                <td>cos1</td>
+                            </tr>
                         <tr>
                             <td class="lp-col">2</td>
                             <td>cos2</td>
@@ -151,12 +160,6 @@
             <div class="table-section section-w-trakcie">
                 <h2>W trakcie robienia </h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th class="lp-col">Lp.</th>
-                            <th class="task-col">cos1</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
                             <td class="lp-col">1</td>
@@ -170,16 +173,10 @@
                 </table>
             </div>
 
-            <!-- Tabela "Zrobione" -->
+            
             <div class="table-section section-zrobione">
                 <h2>Zrobione</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th class="lp-col">Lp.</th>
-                            <th class="task-col">Zadanie</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
                             <td class="lp-col">1</td>
