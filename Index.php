@@ -113,12 +113,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>📋 Lista Zadań</h1>
+        <h1> Lista Zadań</h1>
 
         <div class="tables-wrapper">
-            <!-- Tabela "Do zrobienia" -->
+            
             <div class="table-section section-do">
-                <h2>Do zrobienia ⏳</h2>
+                <h2>Do zrobienia</h2>
                 <table>
                     <thead>
                         <tr>
@@ -129,42 +129,42 @@
                     <tbody>
                         <tr>
                             <td class="lp-col">1</td>
-                            <td>Zrobić projekt</td>
+                            <td>cos1</td>
                         </tr>
                         <tr>
                             <td class="lp-col">2</td>
-                            <td>Dodać stylowanie CSS</td>
+                            <td>cos2</td>
                         </tr>
                         <tr>
                             <td class="lp-col">3</td>
-                            <td>Testować funkcjonalność</td>
+                            <td>cos3</td>
                         </tr>
                         <tr>
                             <td class="lp-col">4</td>
-                            <td>Przygotować dokumentację</td>
+                            <td>cos4</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Tabela "W trakcie robienia" -->
+            
             <div class="table-section section-w-trakcie">
-                <h2>W trakcie robienia 🔄</h2>
+                <h2>W trakcie robienia </h2>
                 <table>
                     <thead>
                         <tr>
                             <th class="lp-col">Lp.</th>
-                            <th class="task-col">Zadanie</th>
+                            <th class="task-col">cos1</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="lp-col">1</td>
-                            <td>Implementacja interfejsu</td>
+                            <td>cos2</td>
                         </tr>
                         <tr>
                             <td class="lp-col">2</td>
-                            <td>Debugowanie błędów</td>
+                            <td>cos3</td>
                         </tr>
                     </tbody>
                 </table>
@@ -172,7 +172,7 @@
 
             <!-- Tabela "Zrobione" -->
             <div class="table-section section-zrobione">
-                <h2>Zrobione ✅</h2>
+                <h2>Zrobione</h2>
                 <table>
                     <thead>
                         <tr>
@@ -183,15 +183,15 @@
                     <tbody>
                         <tr>
                             <td class="lp-col">1</td>
-                            <td>Zaplanować projekt</td>
+                            <td>cos1</td>
                         </tr>
                         <tr>
                             <td class="lp-col">2</td>
-                            <td>Przygotować środowisko</td>
+                            <td>cos2</td>
                         </tr>
                         <tr>
                             <td class="lp-col">3</td>
-                            <td>Stworzyć strukturę HTML</td>
+                            <td>cos3</td>
                         </tr>
                     </tbody>
                 </table>
