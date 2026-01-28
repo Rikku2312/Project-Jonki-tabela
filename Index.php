@@ -47,7 +47,7 @@
         }
 
         .table-section h2 {
-            color: #fff;
+            color: #000000;
             font-size: 16px;
             padding: 10px 15px;
             border-radius: 4px 4px 0 0;
@@ -112,6 +112,61 @@
             padding: 20px;
             font-style: italic;
         }
+
+        .add-task-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .add-task-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .input-group input {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 5px rgba(255, 107, 107, 0.3);
+        }
+
+        .input-group button {
+            padding: 10px 30px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .input-group button:hover {
+            background-color: #ee5a52;
+        }
+
+        .input-group button:active {
+            background-color: #dd4a42;
+        }
     </style>
         <style>
         @media (max-width: 900px) {
@@ -128,30 +183,22 @@
 </head>
 <body>
     <div class="container">
-        <h1> Lista Zadań</h1>
+        <h1>Lista Zadań</h1>
+
+        <div class="add-task-section">
+            <h3>Dodaj nowe zadanie</h3>
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Wpisz treść zadania..." />
+                <button id="addBtn">Dodaj</button>
+            </div>
+        </div>
 
         <div class="tables-wrapper">
             
             <div class="table-section section-do">
                 <h2>Do zrobienia</h2>
                 <table>
-                    <tbody>
-                        <tr>
-                            <td class="lp-col">1</td>
-                                <td>cos1</td>
-                            </tr>
-                        <tr>
-                            <td class="lp-col">2</td>
-                            <td>cos2</td>
-                        </tr>
-                        <tr>
-                            <td class="lp-col">3</td>
-                            <td>cos3</td>
-                        </tr>
-                        <tr>
-                            <td class="lp-col">4</td>
-                            <td>cos4</td>
-                        </tr>
+                    <tbody id="todo-table">
                     </tbody>
                 </table>
             </div>
@@ -160,15 +207,7 @@
             <div class="table-section section-w-trakcie">
                 <h2>W trakcie robienia </h2>
                 <table>
-                    <tbody>
-                        <tr>
-                            <td class="lp-col">1</td>
-                            <td>cos2</td>
-                        </tr>
-                        <tr>
-                            <td class="lp-col">2</td>
-                            <td>cos3</td>
-                        </tr>
+                    <tbody id="inprogress-table">
                     </tbody>
                 </table>
             </div>
@@ -177,23 +216,97 @@
             <div class="table-section section-zrobione">
                 <h2>Zrobione</h2>
                 <table>
-                    <tbody>
-                        <tr>
-                            <td class="lp-col">1</td>
-                            <td>cos1</td>
-                        </tr>
-                        <tr>
-                            <td class="lp-col">2</td>
-                            <td>cos2</td>
-                        </tr>
-                        <tr>
-                            <td class="lp-col">3</td>
-                            <td>cos3</td>
-                        </tr>
+                    <tbody id="done-table">
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    <script>
+        // Wczytaj zadania przy otwarciu strony
+        function loadTasks() {
+            fetch('tasks.php?action=get')
+                .then(response => response.json())
+                .then(data => {
+                    populateTables(data);
+                })
+                .catch(error => console.error('Błąd wczytywania zadań:', error));
+        }
+
+        // Wyświetl zadania w tabelach
+        function populateTables(tasks) {
+            const todoTable = document.getElementById('todo-table');
+            const inprogressTable = document.getElementById('inprogress-table');
+            const doneTable = document.getElementById('done-table');
+
+            todoTable.innerHTML = '';
+            inprogressTable.innerHTML = '';
+            doneTable.innerHTML = '';
+
+            let todoNum = 1, inprogressNum = 1, doneNum = 1;
+
+            tasks.forEach(task => {
+                const tr = document.createElement('tr');
+                let numCol;
+
+                if (task.status === 'todo') {
+                    numCol = todoNum++;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td>`;
+                    todoTable.appendChild(tr);
+                } else if (task.status === 'inprogress') {
+                    numCol = inprogressNum++;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td>`;
+                    inprogressTable.appendChild(tr);
+                } else if (task.status === 'done') {
+                    numCol = doneNum++;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td>`;
+                    doneTable.appendChild(tr);
+                }
+            });
+        }
+
+        // Dodaj nowe zadanie
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const text = input.value.trim();
+
+            if (!text) {
+                alert('Wpisz treść zadania!');
+                return;
+            }
+
+            fetch('tasks.php?action=add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: text, status: 'todo' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    input.value = '';
+                    loadTasks();
+                } else {
+                    alert('Błąd przy dodawaniu zadania');
+                }
+            })
+            .catch(error => console.error('Błąd:', error));
+        }
+
+        // Event listener dla przycisku
+        document.getElementById('addBtn').addEventListener('click', addTask);
+
+        // Możliwość dodania zadania przez Enter
+        document.getElementById('taskInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTask();
+            }
+        });
+
+        // Wczytaj zadania przy otwarciu strony
+        window.addEventListener('load', loadTasks);
+    </script>
 </body>
 </html>
