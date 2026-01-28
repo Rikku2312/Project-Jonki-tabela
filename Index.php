@@ -167,6 +167,31 @@
         .input-group button:active {
             background-color: #dd4a42;
         }
+
+        .delete-btn {
+            background-color: #ff6b6b;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            width: 35px;
+            height: 35px;
+        }
+
+        .delete-btn:hover {
+            background-color: #ee5a52;
+        }
+
+        .delete-btn:active {
+            background-color: #dd4a42;
+        }
     </style>
         <style>
         @media (max-width: 900px) {
@@ -252,15 +277,15 @@
 
                 if (task.status === 'todo') {
                     numCol = todoNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td style="text-align: center; width: 50px;"><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
                     todoTable.appendChild(tr);
                 } else if (task.status === 'inprogress') {
                     numCol = inprogressNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td style="text-align: center; width: 50px;"><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
                     inprogressTable.appendChild(tr);
                 } else if (task.status === 'done') {
                     numCol = doneNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td style="text-align: center; width: 50px;"><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
                     doneTable.appendChild(tr);
                 }
             });
@@ -304,6 +329,28 @@
                 addTask();
             }
         });
+
+        // Usuń zadanie
+        function deleteTask(taskId) {
+            if (confirm('Czy na pewno chcesz usunąć to zadanie?')) {
+                fetch('tasks.php?action=delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: taskId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadTasks();
+                    } else {
+                        alert('Błąd przy usuwaniu zadania');
+                    }
+                })
+                .catch(error => console.error('Błąd:', error));
+            }
+        }
 
         // Wczytaj zadania przy otwarciu strony
         window.addEventListener('load', loadTasks);

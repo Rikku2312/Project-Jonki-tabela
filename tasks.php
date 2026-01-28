@@ -51,6 +51,24 @@ if ($action === 'get') {
     saveTasks($tasks);
     
     echo json_encode(['success' => true, 'task' => $newTask]);
+} elseif ($action === 'delete') {
+    // Usuń zadanie po ID
+    $input = json_decode(file_get_contents('php://input'), true);
+    
+    if (!isset($input['id'])) {
+        echo json_encode(['success' => false, 'message' => 'ID zadania jest wymagane']);
+        exit;
+    }
+
+    $tasks = loadTasks();
+    $tasks = array_filter($tasks, function($task) use ($input) {
+        return $task['id'] != $input['id'];
+    });
+    
+    $tasks = array_values($tasks);
+    saveTasks($tasks);
+    
+    echo json_encode(['success' => true, 'message' => 'Zadanie usunięte']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Nieznana akcja']);
 }
