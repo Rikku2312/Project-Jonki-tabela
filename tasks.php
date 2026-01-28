@@ -69,6 +69,27 @@ if ($action === 'get') {
     saveTasks($tasks);
     
     echo json_encode(['success' => true, 'message' => 'Zadanie usunięte']);
+} elseif ($action === 'update-status') {
+    // Zaktualizuj status zadania
+    $input = json_decode(file_get_contents('php://input'), true);
+    
+    if (!isset($input['id']) || !isset($input['status'])) {
+        echo json_encode(['success' => false, 'message' => 'ID i status są wymagane']);
+        exit;
+    }
+
+    $tasks = loadTasks();
+    
+    foreach ($tasks as &$task) {
+        if ($task['id'] == $input['id']) {
+            $task['status'] = $input['status'];
+            break;
+        }
+    }
+    
+    saveTasks($tasks);
+    
+    echo json_encode(['success' => true, 'message' => 'Status zaktualizowany']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Nieznana akcja']);
 }

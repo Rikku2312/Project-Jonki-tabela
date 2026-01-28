@@ -12,25 +12,32 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            font-family: Arial, Verdana, sans-serif;
+            background-color: #0066CC;
             padding: 20px;
+            min-height: 100vh;
+            color: #000;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: white;
+            background-color: #C0C0C0;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid;
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+            box-shadow: 1px 1px 0 #FFFFFF inset, -1px -1px 0 #808080 inset;
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #000080;
             margin-bottom: 30px;
             font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 0;
+            text-shadow: none;
+            font-family: Arial, Verdana, sans-serif;
         }
 
         .tables-wrapper {
@@ -44,62 +51,104 @@
         .table-section {
             flex: 1 1 300px;
             min-width: 280px;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
         }
 
         .table-section h2 {
-            color: #000000;
-            font-size: 16px;
-            padding: 10px 15px;
-            border-radius: 4px 4px 0 0;
+            color: #ffffff;
+            font-size: 14px;
+            padding: 2px 4px;
+            border-radius: 0;
             margin-bottom: 0;
+            font-weight: bold;
+            letter-spacing: 0;
+            border-bottom: none;
+            font-family: Arial, Verdana, sans-serif;
+            border: none;
         }
 
         .section-do h2 {
-            background-color: #ff6b6b;
+            background: linear-gradient(90deg, #000080, #1084D7);
+            border-color: none;
+            color: #FFFFFF;
         }
 
         .section-w-trakcie h2 {
-            background-color: #ffd93d;
-            color: #333;
+            background: linear-gradient(90deg, #000080, #1084D7);
+            border-color: none;
+            color: #FFFFFF;
         }
 
         .section-zrobione h2 {
-            background-color: #6bcf7f;
+            background: linear-gradient(90deg, #000080, #1084D7);
+            border-color: none;
+            color: #FFFFFF;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            border: 1px solid #ddd;
+            background-color: #C0C0C0;
+            border: 1px solid;
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+        }
+
+        .section-do table {
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+        }
+
+        .section-w-trakcie table {
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+        }
+
+        .section-zrobione table {
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
         }
 
         table thead {
-            background-color: #f8f9fa;
+            background-color: #C0C0C0;
         }
 
         table th {
-            padding: 12px 15px;
+            padding: 4px 8px;
             text-align: left;
             font-weight: bold;
-            color: #333;
-            border-bottom: 2px solid #ddd;
+            color: #000;
+            border: 1px solid;
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+            background: linear-gradient(180deg, #E0E0E0, #C0C0C0);
+            font-size: 12px;
         }
 
         table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-            color: #555;
+            padding: 4px 8px;
+            border: 1px solid #C0C0C0;
+            color: #000;
+            background-color: #FFFFFF;
+            font-size: 12px;
+        }
+
+        table tbody tr {
+            background-color: #FFFFFF;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #F0F0F0;
         }
 
         table tbody tr:hover {
-            background-color: #f9f9f9;
+            background-color: #E8E8E8 !important;
         }
 
         .lp-col {
             width: 50px;
             text-align: center;
-            color: #999;
+            color: #000;
             font-weight: bold;
+            font-size: 12px;
+            font-family: Arial, Verdana, sans-serif;
         }
 
         .task-col {
@@ -115,16 +164,21 @@
 
         .add-task-section {
             margin-bottom: 30px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #ff6b6b;
+            padding: 10px;
+            background-color: #C0C0C0;
+            border-radius: 0;
+            border: 2px solid;
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+            box-shadow: none;
         }
 
         .add-task-section h3 {
-            color: #333;
+            color: #000;
             margin-bottom: 15px;
-            font-size: 16px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0;
+            font-family: Arial, Verdana, sans-serif;
         }
 
         .input-group {
@@ -136,61 +190,119 @@
         .input-group input {
             flex: 1;
             min-width: 250px;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
+            padding: 3px 4px;
+            border: 2px solid;
+            border-color: #808080 #DFDFDF #DFDFDF #808080;
+            border-radius: 0;
+            font-size: 12px;
+            background-color: #FFFFFF;
+            color: #000;
+            font-family: Arial, Verdana, sans-serif;
+            box-shadow: none;
+        }
+
+        .input-group input::placeholder {
+            color: #999;
         }
 
         .input-group input:focus {
             outline: none;
-            border-color: #ff6b6b;
-            box-shadow: 0 0 5px rgba(255, 107, 107, 0.3);
+            border-color: #000080;
         }
 
         .input-group button {
-            padding: 10px 30px;
-            background-color: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
+            padding: 4px 12px;
+            background: linear-gradient(180deg, #E8E8E8, #C0C0C0);
+            color: #000;
+            border: 2px solid;
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+            border-radius: 0;
+            font-size: 11px;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: none;
+            letter-spacing: 0;
+            text-transform: none;
+            font-family: Arial, Verdana, sans-serif;
+            box-shadow: none;
+            margin: 0 auto;
         }
 
         .input-group button:hover {
-            background-color: #ee5a52;
+            background: linear-gradient(180deg, #F0F0F0, #D0D0D0);
         }
 
         .input-group button:active {
-            background-color: #dd4a42;
+            border-color: #808080 #DFDFDF #DFDFDF #808080;
+            background: linear-gradient(180deg, #C0C0C0, #E8E8E8);
         }
 
         .delete-btn {
-            background-color: #ff6b6b;
-            border: none;
-            color: white;
-            padding: 5px 10px;
+            background: linear-gradient(180deg, #E8E8E8, #C0C0C0);
+            border: 2px solid;
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+            color: #000;
+            padding: 2px 6px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
+            display: block;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            width: 35px;
-            height: 35px;
+            border-radius: 0;
+            transition: none;
+            width: 24px;
+            height: 24px;
+            line-height: 1;
+            font-family: Arial, Verdana, sans-serif;
+            box-shadow: none;
+            margin: 0 auto;
         }
 
         .delete-btn:hover {
-            background-color: #ee5a52;
+            background: linear-gradient(180deg, #F0F0F0, #D0D0D0);
         }
 
         .delete-btn:active {
-            background-color: #dd4a42;
+            border-color: #808080 #DFDFDF #DFDFDF #808080;
+            background: linear-gradient(180deg, #C0C0C0, #E8E8E8);
+        }
+
+        .move-btn {
+            background: linear-gradient(180deg, #E8E8E8, #C0C0C0);
+            border: 2px solid;
+            border-color: #DFDFDF #808080 #808080 #DFDFDF;
+            color: #000;
+            padding: 2px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 0;
+            transition: none;
+            text-transform: none;
+            letter-spacing: 0;
+            font-family: Arial, Verdana, sans-serif;
+            box-shadow: none;
+            margin: 0 auto;
+        }
+
+        .move-btn:hover {
+            background: linear-gradient(180deg, #F0F0F0, #D0D0D0);
+        }
+
+        .move-btn:active {
+            border-color: #808080 #DFDFDF #DFDFDF #808080;
+            background: linear-gradient(180deg, #C0C0C0, #E8E8E8);
+        }
+
+        .action-cell {
+            text-align: center;
+            width: 80px;
+            display: block;
+            padding: 0;
         }
     </style>
         <style>
@@ -277,15 +389,15 @@
 
                 if (task.status === 'todo') {
                     numCol = todoNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td style="text-align: center; width: 50px;"><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td><button class="move-btn" onclick="changeStatus(${task.id}, 'inprogress')">Rozpocznij</button></td><td><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
                     todoTable.appendChild(tr);
                 } else if (task.status === 'inprogress') {
                     numCol = inprogressNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td style="text-align: center; width: 50px;"><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td><button class="move-btn" onclick="changeStatus(${task.id}, 'done')">Ukończ</button></td><td><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
                     inprogressTable.appendChild(tr);
                 } else if (task.status === 'done') {
                     numCol = doneNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td style="text-align: center; width: 50px;"><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td></td><td><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
                     doneTable.appendChild(tr);
                 }
             });
@@ -329,6 +441,26 @@
                 addTask();
             }
         });
+
+        // Zmień status zadania
+        function changeStatus(taskId, newStatus) {
+            fetch('tasks.php?action=update-status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: taskId, status: newStatus })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    loadTasks();
+                } else {
+                    alert('Błąd przy zmianie statusu zadania');
+                }
+            })
+            .catch(error => console.error('Błąd:', error));
+        }
 
         // Usuń zadanie
         function deleteTask(taskId) {
