@@ -386,18 +386,19 @@
             tasks.forEach(task => {
                 const tr = document.createElement('tr');
                 let numCol;
+                const taskId = parseInt(task.id);
 
                 if (task.status === 'todo') {
                     numCol = todoNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td><button class="move-btn" onclick="changeStatus(${task.id}, 'inprogress')">Rozpocznij</button></td><td><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td><button class="move-btn" onclick="changeStatus(${taskId}, 'inprogress')">Rozpocznij</button></td><td><button class="delete-btn" onclick="deleteTask(${taskId})">×</button></td>`;
                     todoTable.appendChild(tr);
                 } else if (task.status === 'inprogress') {
                     numCol = inprogressNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td><button class="move-btn" onclick="changeStatus(${task.id}, 'done')">Ukończ</button></td><td><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td><button class="move-btn" onclick="changeStatus(${taskId}, 'done')">Ukończ</button></td><td><button class="delete-btn" onclick="deleteTask(${taskId})">×</button></td>`;
                     inprogressTable.appendChild(tr);
                 } else if (task.status === 'done') {
                     numCol = doneNum++;
-                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td></td><td><button class="delete-btn" onclick="deleteTask(${task.id})">×</button></td>`;
+                    tr.innerHTML = `<td class="lp-col">${numCol}</td><td>${task.text}</td><td></td><td><button class="delete-btn" onclick="deleteTask(${taskId})">×</button></td>`;
                     doneTable.appendChild(tr);
                 }
             });

@@ -39,9 +39,9 @@ if ($action === 'get') {
 
     $tasks = loadTasks();
     
-    // Utwórz nowe zadanie
+    // Utwórz nowe zadanie z unikalnym ID
     $newTask = [
-        'id' => time(),
+        'id' => intval(microtime(true) * 100000),
         'text' => htmlspecialchars(trim($input['text']), ENT_QUOTES, 'UTF-8'),
         'status' => 'todo',
         'created' => date('Y-m-d H:i:s')
@@ -61,14 +61,24 @@ if ($action === 'get') {
     }
 
     $tasks = loadTasks();
-    $tasks = array_filter($tasks, function($task) use ($input) {
-        return $task['id'] != $input['id'];
-    });
+    $idToDelete = $input['id'];
+    $found = false;
     
-    $tasks = array_values($tasks);
-    saveTasks($tasks);
+    foreach ($tasks as $key => $task) {
+        if ($task['id'] == $idToDelete) {
+            unset($tasks[$key]);
+            $found = true;
+            break;
+        }
+    }
     
-    echo json_encode(['success' => true, 'message' => 'Zadanie usunięte']);
+    if ($found) {
+        $tasks = array_values($tasks);
+        saveTasks($tasks);
+        echo json_encode(['success' => true, 'message' => 'Zadanie usunięte']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Zadanie nie znalezione']);
+    }
 } elseif ($action === 'update-status') {
     // Zaktualizuj status zadania
     $input = json_decode(file_get_contents('php://input'), true);
@@ -79,17 +89,23 @@ if ($action === 'get') {
     }
 
     $tasks = loadTasks();
+    $idToUpdate = $input['id'];
+    $found = false;
     
     foreach ($tasks as &$task) {
-        if ($task['id'] == $input['id']) {
+        if ($task['id'] == $idToUpdate) {
             $task['status'] = $input['status'];
+            $found = true;
             break;
         }
     }
     
-    saveTasks($tasks);
-    
-    echo json_encode(['success' => true, 'message' => 'Status zaktualizowany']);
+    if ($found) {
+        saveTasks($tasks);
+        echo json_encode(['success' => true, 'message' => 'Status zaktualizowany']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Zadanie nie znalezione']);
+    }
 } else {
     echo json_encode(['success' => false, 'message' => 'Nieznana akcja']);
 }
