@@ -70,19 +70,19 @@
         }
 
         .section-do h2 {
-            background: linear-gradient(90deg, #000080, #1084D7);
+            background: #0066CC;
             border-color: none;
             color: #FFFFFF;
         }
 
         .section-w-trakcie h2 {
-            background: linear-gradient(90deg, #000080, #1084D7);
+            background: #0066CC;
             border-color: none;
             color: #FFFFFF;
         }
 
         .section-zrobione h2 {
-            background: linear-gradient(90deg, #000080, #1084D7);
+            background: #0066CC;
             border-color: none;
             color: #FFFFFF;
         }
